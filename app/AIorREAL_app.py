@@ -46,7 +46,7 @@ def new_window():
     window.geometry("300x300")
 
 def load_and_predict():
-    result_text.config(text="≪ここに予測結果が表示されます≫")
+    result_text.config(text="≪ここに判別結果が表示されます≫")
     # 画像ファイルを選択
     file_path = filedialog.askopenfilename(title="画像を選択", filetypes=[("Image Files", "*.jpg;*.jpeg;*.png")])
     img = Image.open(file_path)
@@ -74,7 +74,7 @@ def scs_and_predict():
     point_x2 = window.winfo_width()
     point_y2 = window.winfo_height()
 
-    result_text.config(text="≪ここに予測結果が表示されます≫")
+    result_text.config(text="≪ここに判別結果が表示されます≫")
     window.destroy()
 
     # 画像ファイルを選択
@@ -103,7 +103,7 @@ def funcDragAndDrop(event):
     drop_path = event.data
     drop_path = drop_path.replace("{", "").replace("}", "")
     print(event.data)
-    result_text.config(text="≪ここに予測結果が表示されます≫")
+    result_text.config(text="≪ここに判別結果が表示されます≫")
     # 画像ファイルを選択
     img = Image.open(drop_path)
     img = img.resize((250, 250))
@@ -134,18 +134,18 @@ def window_TF():
 
 root = TkinterDnD.Tk()
 root.geometry("300x435")
-root.title("画像予測アプリ")
+root.title("MWFN - 判別アプリ")
 
 button1 = tk.Button(root, text="📌",font=(None, 8), command=window_TF)
 button1.place(width=20,height=20,x=5,y=5)
 
 # ボタンを作成してクリックで画像を選択
-button = tk.Button(root, text="画像を選択して予測", command=load_and_predict)
+button = tk.Button(root, text="画像を選択して判別", command=load_and_predict)
 button.place(anchor=tk.CENTER,width=200,relx=0.5,y=25)
 
 button2 = tk.Button(root, text="範囲を選択", command=new_window)
 button2.place(anchor=tk.CENTER,width=100,relx=0.25,y=55)
-button3 = tk.Button(root, text="撮影して予測", command=scs_and_predict)
+button3 = tk.Button(root, text="撮影して判別", command=scs_and_predict)
 button3.place(anchor=tk.CENTER,width=100,relx=0.75,y=55)
 
 labelFrame = tk.LabelFrame(width=280, height=35, text="画像をドラッグ&ドロップ", labelanchor="n")
@@ -153,7 +153,7 @@ labelFrame.drop_target_register(DND_FILES)
 labelFrame.dnd_bind('<<Drop>>', funcDragAndDrop)
 labelFrame.place(anchor=tk.CENTER,relx=0.5,y=90)
 
-result_text = tk.Label(root, text="≪ここに予測結果が表示されます≫")
+result_text = tk.Label(root, text="≪ここに判別結果が表示されます≫")
 result_text.place(anchor=tk.CENTER,relx=0.5,y=125)
 
 attention_text = tk.Label(root, text="この予測が必ず正しいとは限りません。\n参考にする程度で利用することをお勧めします。", font=(None, 8))
